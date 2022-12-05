@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            shape changer
+            
+        </title>
+        <style type="text/css">
+            #shape {
+                width:100px;
+                height:100px;
+                background-color: red;
+                display:none;
+                position: relative;
+
+            }
+        </style>
+    </head>
+    <body>
+        <h2>CLICK ME TO SEE MAGIC</h2>
+        <p>Your time is:<span id="time"></span></p>
+        <div id="shape"></div>
+        <script type="text/javascript">
+            let  start = new Date().getTime();
+            function makeShape()
+            {
+                let top = Math.random() * 400;
+                let left =Math.random() * 400;
+                let width= Math.random() * 300;
+                let sha = Math.random() * 100;
+                var randomColor = Math.floor(Math.random()*16777215).toString(16);
+                
+                document.getElementById("shape").style.top = top + "px";
+                document.getElementById("shape").style.left = left + "px";
+                document.getElementById("shape").style.width = width + "px";
+                document.getElementById("shape").style.borderRadius = sha + "%";
+                document.getElementById("shape").style.backgroundColor="#"+randomColor;
+                document.getElementById("shape").style.display="block";
+
+                start = new Date().getTime();
+            }
+
+            function appearAfterDisplay(){
+                
+                setTimeout(makeShape,Math.random()+1000)
+
+            }
+
+            appearAfterDisplay();
+            
+            document.getElementById("shape").onclick=function()
+            {
+                document.getElementById("shape").style.display="none";
+                let end=new Date().getTime();
+                let timeTaken = (end-start)/1000 +"s";
+                document.getElementById("time").innerHTML=timeTaken;
+            
+                appearAfterDisplay();
+             }
+
+        
+        </script>
+
+    </body>
+</html>
